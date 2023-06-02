@@ -1,0 +1,188 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "WebApplication1",
+    "version": "1.0"
+  },
+  "paths": {
+    "/Pet": {
+      "get": {
+        "tags": [
+          "Pet"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Pet"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Dog"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Cat"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Fish"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Labrador"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Poodle"
+                    }
+                  ]
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Pet"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Dog"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Cat"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Fish"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Labrador"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Poodle"
+                    }
+                  ]
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Pet"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Dog"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Cat"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Fish"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Labrador"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Poodle"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Cat": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          }
+        ],
+        "properties": {
+          "hunts": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Dog": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          }
+        ],
+        "properties": {
+          "bark": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Fish": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Pet"
+          }
+        ],
+        "properties": {
+          "swims": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Labrador": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Dog"
+          }
+        ],
+        "properties": {
+          "assistanceDog": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Pet": {
+        "required": [
+          "_petType"
+        ],
+        "type": "object",
+        "properties": {
+          "_petType": {
+            "type": "string"
+          },
+          "nickName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "discriminator": {
+          "propertyName": "_petType"
+        }
+      },
+      "Poodle": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Dog"
+          }
+        ],
+        "properties": {
+          "showDog": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
